@@ -12,10 +12,11 @@ const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c4351
   <section>
   {
       page?.mainImage ? (
-        <Image
-          class="post__cover"
+        <Image class="post__cover"
           src={urlFor(page.mainImage).url()}
           alt="Cover image"
+          height="300"
+          width="300"
         />
       ) : (
         <div class="post__cover--none" />
