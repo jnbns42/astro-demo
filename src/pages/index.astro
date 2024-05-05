@@ -8,10 +8,10 @@ const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c4351
 
 ---
 
-<Layout title={page.title}>
+<Layout title={page?.title}>
   <section>
   {
-      page.mainImage ? (
+      page?.mainImage ? (
         <img
           class="post__cover"
           src={urlFor(page.mainImage).url()}
@@ -21,6 +21,6 @@ const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c4351
         <div class="post__cover--none" />
       )
     }
-    <PortableText value={page.body} />
+    <PortableText value={page?.body} />
   </section>
 </Layout>
