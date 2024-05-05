@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { urlFor } from "../utils/image";
 import { sanityClient } from "sanity:client";
 import { PortableText } from "astro-portabletext";
-
+import { Image } from 'astro:assets';
 const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c43510');
 
 ---
@@ -12,7 +12,7 @@ const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c4351
   <section>
   {
       page?.mainImage ? (
-        <img
+        <Image
           class="post__cover"
           src={urlFor(page.mainImage).url()}
           alt="Cover image"
