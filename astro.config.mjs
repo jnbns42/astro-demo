@@ -1,6 +1,8 @@
 // Loading environment variables from .env files
 // https://docs.astro.build/en/guides/configuring-astro/#environment-variables
 import { loadEnv } from "vite";
+import cloudflare from '@astrojs/cloudflare';
+
 const {
   PUBLIC_SANITY_STUDIO_PROJECT_ID,
   PUBLIC_SANITY_STUDIO_DATASET,
@@ -18,13 +20,12 @@ import react from "@astrojs/react";
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
-import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   // Hybrid+adapter is required to support embedded Sanity Studio
-  output: "hybrid",
-  adapter: vercel(),
+  output: "server",
+  adapter: cloudflare(),
   integrations: [sanity({
     projectId,
     dataset,
