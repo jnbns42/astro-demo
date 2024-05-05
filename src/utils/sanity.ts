@@ -27,3 +27,12 @@ export interface Post {
   mainImage?: ImageAsset;
   body: PortableTextBlock[];
 }
+
+export interface Home {
+  _type: "home";
+  _createdAt: string;
+  title?: string;
+  mainImage?: ImageAsset;
+  body: PortableTextBlock[];
+}
+

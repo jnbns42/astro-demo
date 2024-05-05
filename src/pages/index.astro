@@ -1,14 +1,26 @@
 ---
-import Card from "../components/Card.astro";
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-import { getPosts } from "../utils/sanity";
+import { urlFor } from "../utils/image";
+import { sanityClient } from "sanity:client";
+import { PortableText } from "astro-portabletext";
 
-const posts = await getPosts();
+const page = await sanityClient.getDocument('c38c20ba-f22f-4a2f-8d55-d860b1c43510');
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={page.title}>
   <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
+  {
+      page.mainImage ? (
+        <img
+          class="post__cover"
+          src={urlFor(page.mainImage).url()}
+          alt="Cover image"
+        />
+      ) : (
+        <div class="post__cover--none" />
+      )
+    }
+    <PortableText value={page.body} />
   </section>
 </Layout>
